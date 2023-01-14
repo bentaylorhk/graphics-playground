@@ -11,8 +11,7 @@ project(
 
 set(CMAKE_CXX_STANDARD 20)
 
+include(cmake/opencv.cmake)
 include(cmake/targets.cmake)
-
-find_package(OpenCV REQUIRED)
 
 add_subdirectory(src)
