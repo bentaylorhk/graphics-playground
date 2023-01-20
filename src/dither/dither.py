@@ -10,8 +10,8 @@ def dither(img):
 
     grey_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    for y in range(h - 1):
-        for x in range(1, w - 1):
+    for y in np.arange(h - 1):
+        for x in np.arange(1, w - 1):
             old_pixel = grey_img[y, x]
             new_pixel = np.round(old_pixel / 255.0) * 255
             grey_img[y, x] = new_pixel
