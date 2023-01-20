@@ -21,9 +21,7 @@ void render()
                 value = round((thresholdDistance / threshold) * (nums.length() - 1));
             }
             
-            textSize((value + 10) * 3);
-            
-            text(nums.charAt(value), x, y);
+            text(nums.charAt(value), x, y, distance);
         }
     }
     
@@ -32,13 +30,15 @@ void render()
 
 void setup()
     {
-    size(1200, 1000);
+    size(1200, 1000, P3D);
     
     int fontSize = 30;
     
     PFont font = createFont("slkscr.ttf", fontSize);
     
     textFont(font);
+    
+    textSize(fontSize);
     
     textAlign(CENTER, CENTER);
     return;

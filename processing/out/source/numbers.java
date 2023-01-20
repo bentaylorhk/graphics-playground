@@ -38,9 +38,9 @@ public void render()
                 value = round((thresholdDistance / threshold) * (nums.length() - 1));
             }
             
-            textSize((value + 10) * 3);
+            //.textSize((value + 10) * 3);
             
-            text(nums.charAt(value), x, y);
+            text(nums.charAt(value), x, y, distance);
         }
     }
     
@@ -57,6 +57,8 @@ public void setup()
     
     textFont(font);
     
+    textSize(fontSize);
+    
     textAlign(CENTER, CENTER);
     return;
 }
@@ -69,7 +71,7 @@ public void draw()
 }
 
 
-  public void settings() { size(1200, 1000); }
+  public void settings() { size(1200, 1000, P3D); }
 
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "numbers" };
