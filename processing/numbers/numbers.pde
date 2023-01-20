@@ -9,8 +9,8 @@ final int threshold = 400;
 
 void render()
 {
-    for (int y = cellSize / 2; y < height; y += cellSize) {
-        for (int x  = cellSize / 2; x < width; x += cellSize) {
+    for (int y = -2000; y < 2000; y += cellSize) {
+        for (int x  = -2000; x < 2000; x += cellSize) {
             float distance = dist(x, y, mouseX, mouseY);
             
             int value = 0;
@@ -18,10 +18,11 @@ void render()
             float thresholdDistance = threshold - distance;
             
             if (thresholdDistance > 0) {
-                value = round((thresholdDistance / threshold) * (nums.length() - 1));
+                value = round((thresholdDistance / threshold) * (nums.length()));
+                value = constrain(value, 0, nums.length() - 1);
             }
             
-            text(nums.charAt(value), x, y, distance);
+            text(nums.charAt(value), x, y, -pow(distance, 0.9));
         }
     }
     
