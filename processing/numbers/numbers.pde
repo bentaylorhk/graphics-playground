@@ -7,11 +7,24 @@ final int cellSize = 40;
 
 final int threshold = 400;
 
+final int gridWidth = 2400;
+
+float xOffset = 0.0;
+float yOffset = 100.0;
+
+final int fontSize = 30;
+
 void render()
 {
-    for (int y = -2000; y < 2000; y += cellSize) {
-        for (int x  = -2000; x < 2000; x += cellSize) {
-            float distance = dist(x, y, mouseX, mouseY);
+    xOffset = xOffset + 0.01;
+    yOffset = yOffset + 0.01;
+    
+    float bumpX = noise(xOffset) * width;
+    float bumpY = noise(yOffset) * width;
+    
+    for (int y = -gridWidth; y < gridWidth; y += cellSize) {
+        for (int x  = -gridWidth; x < gridWidth; x += cellSize) {
+            float distance = dist(x, y, bumpX, bumpY);
             
             int value = 0;
             
@@ -21,6 +34,8 @@ void render()
                 value = round((thresholdDistance / threshold) * (nums.length()));
                 value = constrain(value, 0, nums.length() - 1);
             }
+            
+            textSize(fontSize + (value));
             
             text(nums.charAt(value), x, y, -pow(distance, 0.9));
         }
@@ -33,7 +48,6 @@ void setup()
     {
     size(1200, 1000, P3D);
     
-    int fontSize = 30;
     
     PFont font = createFont("slkscr.ttf", fontSize);
     
