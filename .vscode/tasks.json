@@ -71,6 +71,42 @@
                     "--run"
                 ]
             }
+        },
+        {
+            "label": "Run Boot",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "${config:processing.path}",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            },
+            "args": [
+                "--force",
+                "--sketch=${workspaceRoot}/processing/boot",
+                "--output=${workspaceRoot}/processing/out",
+                "--run"
+            ],
+            "windows": {
+                "type": "process",
+                "args": [
+                    "--force",
+                    {
+                        "value": "--sketch=${workspaceRoot}\\processing\\boot",
+                        "quoting": "strong"
+                    },
+                    {
+                        "value": "--output=${workspaceRoot}\\processing\\out",
+                        "quoting": "strong"
+                    },
+                    "--run"
+                ]
+            }
         }
     ]
 }
