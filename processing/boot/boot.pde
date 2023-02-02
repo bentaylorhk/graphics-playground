@@ -3,10 +3,10 @@
 
 PShape boot;
 
-float ry;
+float rz;
 
 public void setup() {
-    size(1000, 1000, P3D);
+    size(1200, 1200, P3D);
     
     boot = loadShape("boot.obj");
 }
@@ -15,9 +15,19 @@ public void draw() {
     background(0);
     lights();
     
-    translate(width / 2, height / 2, 0);
-    rotateY(ry);
-    shape(boot);
+    int widthIncrement = width / 4;
+    int heightIncrement = height / 3;
     
-    ry += 0.02;
+    for (int w = widthIncrement; w < width; w += widthIncrement) {
+        for (int h = heightIncrement; h < height; h += heightIncrement) {
+            pushMatrix();
+            translate(w, h, 0);
+            rotateX(HALF_PI);
+            rotateZ(rz);
+            shape(boot);
+            popMatrix();
+        }
+    }
+    
+    rz += 0.02;
 }

@@ -3,7 +3,7 @@
 
 final String nums = "0123456789";
 
-final int cellSize = 40;
+final int cellSize = 20;
 
 final int threshold = 400;
 
@@ -12,15 +12,25 @@ final int gridWidth = 2400;
 float xOffset = 0.0;
 float yOffset = 100.0;
 
-final int fontSize = 30;
+final int fontSize = 15;
+
+final boolean INTERACTIVE = true;
 
 void render()
 {
-    xOffset = xOffset + 0.01;
-    yOffset = yOffset + 0.01;
+    float bumpX, bumpY;
     
-    float bumpX = noise(xOffset) * width;
-    float bumpY = noise(yOffset) * width;
+    if (INTERACTIVE) {
+        bumpX = mouseX;
+        bumpY = mouseY;
+    }
+    else {
+        xOffset = xOffset + 0.01;
+        yOffset = yOffset + 0.01;
+        
+        bumpX = noise(xOffset) * width;
+        bumpY = noise(yOffset) * width;
+    }
     
     for (int y = -gridWidth; y < gridWidth; y += cellSize) {
         for (int x  = -gridWidth; x < gridWidth; x += cellSize) {
